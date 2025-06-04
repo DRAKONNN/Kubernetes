@@ -1,0 +1,18 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dogbox
+spec:
+  replicas: 4  # number of dogs
+  selector:
+    matchLabels:
+      app: dogbox
+  template:
+    metadata:
+      labels:
+        app: dogbox
+    spec:
+      containers:
+      - name: dog
+        image: dogbox:latest
+        imagePullPolicy: Never
