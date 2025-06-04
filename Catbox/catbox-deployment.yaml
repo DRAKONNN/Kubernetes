@@ -1,0 +1,18 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: catbox
+spec:
+  replicas: 3  # number of cats
+  selector:
+    matchLabels:
+      app: catbox
+  template:
+    metadata:
+      labels:
+        app: catbox
+    spec:
+      containers:
+      - name: cat
+        image: catbox:latest
+        imagePullPolicy: Never
