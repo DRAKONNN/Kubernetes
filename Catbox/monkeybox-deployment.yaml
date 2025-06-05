@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: monkeybox
+spec:
+  replicas: 5
+  selector:
+    matchLabels:
+      app: monkeybox
+  template:
+    metadata:
+      labels:
+        app: monkeybox
+    spec:
+      containers:
+      - name: monkey
+        image: monkeybox:latest
+        imagePullPolicy: Never
+        ports:
+        - containerPort: 8080

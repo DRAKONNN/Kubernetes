@@ -9,6 +9,7 @@ eval $(minikube docker-env)
 echo "🐳 Construyendo las imágenes Docker con tag 'catbox' y 'dogbox'..."
 docker build -f Dockerfile.cat -t catbox .
 docker build -f Dockerfile.dog -t dogbox .
+docker build -f Dockerfile.monkey -t monkeybox .
 
 echo "🚀 Reiniciando el deployment 'catbox' en Kubernetes..."
 kubectl rollout restart deployment/catbox

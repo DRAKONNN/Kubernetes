@@ -5,13 +5,13 @@ from http.server import BaseHTTPRequestHandler, HTTPServer
 
 # Monkey types
 monkeys = {
-    "normal": "🐱 Miau!",
-    "miedoso": "🙀 Miaaauu!",
-    "triste": "😿 Meu...",
-    "amoroso": "😻 Maauu"
+    "normal": "🐵 U-u a-a",
+    "blind": "🙈 U-u",
+    "deaf": "🙉 Huh?",
+    "mute": "🙊 ..."
 }
 
-# Elegir un tipo de gato aleatoriamente por pod
+# Elegir un tipo de mono aleatoriamente por pod
 monkey_type = random.choice(list(monkeys.keys()))
 monkey_message = monkeys[monkey_type]
 hostname = socket.gethostname()
@@ -22,7 +22,7 @@ class CatHandler(BaseHTTPRequestHandler):
     def do_GET(self):
         self.send_response(200)
         self.end_headers()
-        respuesta = f"{monkey_message} desde {hostname} (tipo: {monkey_type})"
+        respuesta = f"{monkey_message} from {hostname} (type: {monkey_type})"
         self.wfile.write(respuesta.encode())
 
 if __name__ == '__main__':

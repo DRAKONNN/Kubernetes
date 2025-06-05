@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: client-pod
+spec:
+  containers:
+  - name: client
+    image: curlimages/curl:latest
+    command: ["/bin/sh", "-c"]
+    args:
+      - |
+        echo "Iniciando cliente en bucle contra monkeybox-service...";
+        while true; do
+          echo -n "$(date) - ";
+          curl -s http://monkeybox-service;
+          echo;
+          sleep 2;
+        done
