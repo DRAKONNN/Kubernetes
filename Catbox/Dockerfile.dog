@@ -11,4 +11,4 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Copiar el resto del código (esto invalida cache si cambia algo como catbox.py)
 COPY . .
 
-CMD ["python", "dogbox.py"]
+CMD ["python", "src/dogbox.py"]
