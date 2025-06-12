@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: festival-client
+spec:
+  replicas: 3  # Empezar con pocos para pruebas
+  selector:
+    matchLabels:
+      app: festival-client
+  template:
+    metadata:
+      labels:
+        app: festival-client
+    spec:
+      containers:
+      - name: client
+        command: ["sh", "-c"]
+        image: busybox
+        args:
+          - /bin/sh
+          - -c
+          - |
+            while true; do
+              wget -q -O - http://festival-service.default.svc.cluster.local;
+              sleep 1;
+            done

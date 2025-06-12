@@ -16,6 +16,7 @@ spec:
       containers:
       - name: api
         image: product-api:latest
+        imagePullPolicy: Never
         ports:
         - containerPort: 5000
 ---
