@@ -14,13 +14,16 @@ spec:
     spec:
       containers:
       - name: client
+        image: appropriate/curl
         command: ["sh", "-c"]
-        image: busybox
         args:
-          - /bin/sh
-          - -c
           - |
             while true; do
-              wget -q -O - http://festival-service.default.svc.cluster.local;
-              sleep 1;
+              echo "=== $(date) ===";
+              echo "Pod: $(hostname)";
+              echo "Response:";
+              curl -s -w "Status: %{http_code}\nTime: %{time_total}s\n" \
+                http://festival-service.default.svc.cluster.local;
+              echo "---------------";
+              sleep $((RANDOM % 3 + 1));
             done
