@@ -18,7 +18,7 @@ def get_artists():
     # Mostrar el nombre del pod (para demostrar el balanceo de carga)
     pod_name = os.getenv('HOSTNAME', 'unknown-pod')
     artists_str = " | ".join(artists)
-    return f"Festival 2025: {artists_str}</p><p>Served by: {pod_name}</p>"
+    return f"Festival 2025: {artists_str} Served by: {pod_name}"
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=8080)

@@ -14,10 +14,11 @@ spec:
     spec:
       containers:
       - name: client
-        image: appropriate/curl
+        image: alpine
         command: ["sh", "-c"]
         args:
           - |
+            apk add --no-cache curl;
             while true; do
               echo "=== $(date) ===";
               echo "Pod: $(hostname)";
@@ -25,5 +26,5 @@ spec:
               curl -s -w "Status: %{http_code}\nTime: %{time_total}s\n" \
                 http://festival-service.default.svc.cluster.local;
               echo "---------------";
-              sleep $((RANDOM % 3 + 1));
+              sleep $((RANDOM % 6 + 3));
             done
