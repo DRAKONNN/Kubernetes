@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: festival-client
 spec:
-  replicas: 3  # Empezar con pocos para pruebas
+  replicas: 3
   selector:
     matchLabels:
       app: festival-client
@@ -23,7 +23,7 @@ spec:
               echo "=== $(date) ===";
               echo "Pod: $(hostname)";
               echo "Response:";
-              curl -s -w "Status: %{http_code}\nTime: %{time_total}s\n" \
+              curl -s -w "\nStatus: %{http_code}\nTime: %{time_total}s\n" \
                 http://festival-service.default.svc.cluster.local;
               echo "---------------";
               sleep $((RANDOM % 6 + 3));

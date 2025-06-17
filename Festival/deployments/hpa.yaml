@@ -15,4 +15,4 @@ spec:
       name: cpu
       target:
         type: Utilization
-        averageUtilization: 50  # Escala si el uso promedio de CPU supera el 50%
+        averageUtilization: 20  # Escala si el uso promedio de CPU supera el 20%
