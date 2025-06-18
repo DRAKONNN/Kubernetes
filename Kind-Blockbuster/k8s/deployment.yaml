@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: blockbuster
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: blockbuster
+  template:
+    metadata:
+      labels:
+        app: blockbuster
+    spec:
+      containers:
+        - name: blockbuster
+          image: blockbuster:latest
+          ports:
+            - containerPort: 3000
