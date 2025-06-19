@@ -15,5 +15,6 @@ spec:
       containers:
         - name: blockbuster
           image: blockbuster:latest
+          imagePullPolicy: Never
           ports:
             - containerPort: 3000
