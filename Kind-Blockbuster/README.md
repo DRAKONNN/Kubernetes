@@ -19,3 +19,26 @@ $ kind load docker-image blockbuster:latest --name blockbuster
 ```
 $ kubectl apply -f k8s/
 ```
+
+
+# Artillery
+## 1. Install Metrics Server for Kind
+```
+# Aplicar la configuración base de Metrics Server
+$ kubectl apply -f https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml
+
+# Aplicar parche necesario para Kind
+$ kubectl patch deployment metrics-server -n kube-system --type=json \
+  -p='[{"op": "add", "path": "/spec/template/spec/containers/0/args/-", "value": "--kubelet-insecure-tls"}]'
+```
+```
+$ watch kubectl top pods
+```
+## 2. Maintain port-forwarding
+```
+kubectl port-forward svc/<nombre-del-servicio> 8080:80
+```
+## 3. Execute Artillery
+```
+artillery run blockbuster-load-test.yml
+```

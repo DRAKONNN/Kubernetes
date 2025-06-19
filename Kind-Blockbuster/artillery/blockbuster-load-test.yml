@@ -1,0 +1,23 @@
+config:
+  target: "http://localhost:8080"
+  phases:
+    - duration: 30  # 30 segundos de prueba
+      arrivalRate: 100  # 100 usuarios simultáneos
+  processor: "./processor.js"  # Opcional para chequeos personalizados
+scenarios:
+  - name: "Prueba HTML básica"
+    flow:
+      - get:
+          url: "/"
+          expect:  # Verificamos que sea HTML y contenga el texto esperado
+            - statusCode: 200
+            - contentType: "text/html"
+      - think: 1  # Pausa entre peticiones
+
+  - name: "Prueba endpoint /movies"
+    flow:
+      - get:
+          url: "/movies"
+          expect:
+            - statusCode: 200
+            - contentType: "application/json"  # Asumo que este endpoint devuelve JSON
